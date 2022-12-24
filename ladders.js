@@ -2,19 +2,35 @@ const laddersArray = [];
 
 class Ladder {
  constructor() {
-  this.top = (Math.random() * canvas.height/3) + 40;
-  this.bottom = (Math.random() * canvas.height/3) + 40;
+  // let random = 300 * Math.random() - 150
+  let randomTop = (Math.random() * canvas.height/3);
+  if(randomTop < 200){
+   randomTop += 200
+  }
+  let randomBottom = (Math.random() * canvas.height/3);
+  if(randomBottom < 200 && randomTop < 400){
+   randomBottom += 250
+  }
+  this.top =  randomTop
+  this.bottom = randomBottom
   this.x = canvas.width;
-  this.width = 20;
+  this.width = 40;
   this.color = 'black';
+  this.random = 400 + (Math.random() * 300) ;
+  this.counted = false;
+ 
  }
  draw(){
   ctx.fillStyle = this.color;
-  ctx.fillRect(this.x, 0, this.width, this.top);
-  ctx.fillRect(this.x, canvas.height - this.bottom , this.width, this.bottom )
+  ctx.fillRect(this.x, 0 , this.width, this.top);
+  ctx.fillRect(this.x, canvas.height - this.bottom, this.width, this.bottom);
  }
  update(){
   this.x -= gameSpeed;
+  if (!this.counted && this.x < tomatito.x) {
+   score++;
+   this.counted = true;
+ }
   this.draw();
  }
 }

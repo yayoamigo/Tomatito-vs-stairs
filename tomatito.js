@@ -3,25 +3,25 @@ class Tomatito {
   this.x = 150;
   this.y = 200;
   this.vy = 0;
-  this.width = 20;
-  this.height = 20;
+  this.width = 40;
+  this.height = 40;
   this.weight = 1;
  }
  update(){
   let curve = Math.sin(angle) * 15;
-  if (this.y > canvas.height - (this.height * 3) + curve){
-      this.y = canvas.height - (this.height * 3) + curve;
+  if (this.y > canvas.height - (this.height * 2) + curve){
+      this.y = canvas.height - (this.height * 2) + curve;
       this.vy = 0;
   } else {
       this.vy += this.weight;
       this.vy *= 0.7
       this.y += this.vy;
   }
-  if (this.y < 0 + this.height){
-   this.y = 0 + this.height;
+  if (this.y < 0+ this.height  ){
+   this.y = 0 + this.height 
    this.vy = 0;
   }
-  if (spacePressed && this.y > this.height * 3) this.run();
+  if (spacePressed && this.y > this.height  * 1.1) this.run();
  
  }
  draw(){
@@ -29,7 +29,7 @@ class Tomatito {
   ctx.fillRect(this.x, this.y, this.width, this.height);
  }
  run(){
-  this.vy -= 2;
+  this.vy -= 3.5;
  }
 }
 
