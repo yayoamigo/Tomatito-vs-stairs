@@ -14,12 +14,14 @@ let gameSpeed = 2;
 
 const animate = () =>{
  ctx.clearRect(0, 0, canvas.width, canvas.height);
+ handleLadders();
  tomatito.update();
  tomatito.draw();
  handleFarts();
  requestAnimationFrame(animate);
  angle+=0.11;
  hue++;
+ frame++;
 }
 
 animate();
