@@ -1,15 +1,17 @@
 const laddersArray = [];
+let bark = new Audio()
+bark.src = 'dogbark.wav'
 
 class Ladder {
  constructor() {
   // let random = 300 * Math.random() - 150
   let randomTop = (Math.random() * canvas.height/3);
   if(randomTop < 200){
-   randomTop += 200
+   randomTop += 230
   }
   let randomBottom = (Math.random() * canvas.height/3);
   if(randomBottom < 200 && randomTop < 400){
-   randomBottom += 250
+   randomBottom += 200
   }
   this.top =  randomTop
   this.bottom = randomBottom
@@ -30,6 +32,8 @@ class Ladder {
   if (!this.counted && this.x < tomatito.x) {
    score++;
    this.counted = true;
+   bark.play()
+
  }
   this.draw();
  }

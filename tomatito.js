@@ -5,7 +5,7 @@ class Tomatito {
   this.vy = 0;
   this.width = 40;
   this.height = 40;
-  this.weight = 1;
+  this.weight = 0.9;
  }
  update(){
   let curve = Math.sin(angle) * 15;
@@ -14,7 +14,7 @@ class Tomatito {
       this.vy = 0;
   } else {
       this.vy += this.weight;
-      this.vy *= 0.7
+      this.vy *= 0.9
       this.y += this.vy;
   }
   if (this.y < 0+ this.height  ){
@@ -29,7 +29,7 @@ class Tomatito {
   ctx.fillRect(this.x, this.y, this.width, this.height);
  }
  run(){
-  this.vy -= 3.5;
+  this.vy -= 2;
  }
 }
 

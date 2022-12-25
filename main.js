@@ -4,11 +4,32 @@ canvas.width = 700;
 canvas.height = 900;
 
 let spacePressed = false;
+let start = false;
 let angle = 0;
 let hue = 0;
 let frame = 0;
 let score = 0;
 let gameSpeed = 2;
+let audio_hit = new Audio()
+audio_hit.src = 'qubodup-crash.ogg'
+let backGround = new Image();
+backGround.src = 'BG.png';
+const BG = {
+  x1: 0,
+  x2: canvas.width,
+  y: 0,
+  width: canvas.width,
+  height: canvas.height
+}
+
+const handleBG = () => {
+  if(BG.x1 <= -BG.width + gameSpeed) BG.x1 = BG.width;
+  else BG.x1 -= gameSpeed;
+  if(BG.x2 <= -BG.width + gameSpeed) BG.x2 = BG.width;
+  else (BG.x2 -= gameSpeed);
+  ctx.drawImage(backGround, BG.x1, BG.y, BG.width, BG.height);
+  ctx.drawImage(backGround, BG.x2, BG.y, BG.width, BG.height);
+}
  
 const handleCollisions = () => {
  for (let i = 0; i< laddersArray.length; i++){
@@ -17,6 +38,7 @@ const handleCollisions = () => {
    ((tomatito.y < 0 + laddersArray[i].top  && tomatito.y + tomatito.height >0) ||
    (tomatito.y > canvas.height - laddersArray[i].bottom &&
     tomatito.y + tomatito.height < canvas.height))){
+    audio_hit.play();
      ctx.font = "40px sans-serif";
       ctx.fillStyle = "Red";
       ctx.fillText(
@@ -29,25 +51,38 @@ const handleCollisions = () => {
  }
 }
 
-function loss() {
- if (tomatito.vy > 0) {
-   audio_hit.play()
- }
- tomatito.vy = 0
-}
+
+window.addEventListener('keydown', (e) => {
+  if(e.code === 'Space')   spacePressed = true; start = true;
+  setTimeout(() => {
+   spacePressed = false;
+ }, "100")
+ })
+ 
+ window.addEventListener('mousedown', (e) => {
+   start = true;
+   spacePressed = true;
+   setTimeout(() => {
+    spacePressed = false;
+  }, "100")
+ 
+ })
+
 
 const animate = () =>{
  ctx.clearRect(0, 0, canvas.width, canvas.height);
+ handleBG();
  handleLadders();
  tomatito.update();
  tomatito.draw();
- ctx.fillStyle = 'blue';
+ ctx.fillStyle = 'white';
  ctx.font = "90px Georgia";
  ctx.strokeText(score, 450, 70);
  ctx.fillText(score, 450, 70);
  handleFarts();
  handleCollisions();
- if (handleCollisions()) return;
+ if (handleCollisions())
+  return;
  requestAnimationFrame(animate);
  angle+=0.11;
  hue++;
@@ -56,18 +91,4 @@ const animate = () =>{
 
 animate();
 
-window.addEventListener('keydown', (e) => {
- if(e.code === 'Space') spacePressed = true;
-})
-
-window.addEventListener('mousedown', (e) => {
-  spacePressed = true;
-  setTimeout(() => {
-   spacePressed = false;
- }, "100")
-
-})
-window.addEventListener('keyup', (e) => {
- if(e.code === 'Space') spacePressed = false;
-})
 
