@@ -1,7 +1,7 @@
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
-canvas.width = 700;
-canvas.height = 900;
+canvas.width = 1100;
+canvas.height = 1200;
 
 let spacePressed = false;
 let start = false;
@@ -39,11 +39,11 @@ const handleCollisions = () => {
    (tomatito.y > canvas.height - laddersArray[i].bottom &&
     tomatito.y + tomatito.height < canvas.height))){
     audio_hit.play();
-     ctx.font = "40px sans-serif";
-      ctx.fillStyle = "Red";
+     ctx.font = "90px Anton";
+      ctx.fillStyle = "purple";
       ctx.fillText(
-        "Game Over, Your Score is " + score,
-        50,
+        "Tomatito got scared!",
+        80,
         canvas.height / 2 - 10
       );
      return true;
@@ -75,10 +75,10 @@ const animate = () =>{
  handleLadders();
  tomatito.update();
  tomatito.draw();
- ctx.fillStyle = 'white';
- ctx.font = "90px Georgia";
- ctx.strokeText(score, 450, 70);
- ctx.fillText(score, 450, 70);
+ ctx.fillStyle = 'fucsia';
+ ctx.font = "90px Anton";
+ ctx.strokeText(score, 500, 100);
+ ctx.fillText(score, 500, 100);
  handleFarts();
  handleCollisions();
  if (handleCollisions())

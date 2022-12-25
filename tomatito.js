@@ -1,11 +1,17 @@
+const tomatitoSprite = new Image();
+tomatitoSprite.src = 'toma.png'
+
+
 class Tomatito {
  constructor(){
   this.x = 150;
   this.y = 200;
   this.vy = 0;
-  this.width = 40;
-  this.height = 40;
-  this.weight = 0.9;
+  this.ogWidth = 941;
+  this.ogHeight = 680
+  this.width = this.ogWidth/10
+  this.height = this.ogHeight/10
+  this.weight = 1;
  }
  update(){
   let curve = Math.sin(angle) * 15;
@@ -26,7 +32,7 @@ class Tomatito {
  }
  draw(){
   ctx.fillStyle = 'red';
-  ctx.fillRect(this.x, this.y, this.width, this.height);
+  ctx.drawImage(tomatitoSprite, 0, 0, this.ogWidth, this.ogHeight, this.x - 6, this.y - 85, this.width * 3, this.height *3)
  }
  run(){
   this.vy -= 2;

@@ -1,17 +1,19 @@
 const laddersArray = [];
 let bark = new Audio()
 bark.src = 'dogbark.wav'
+const lad = new Image()
+lad.src = 'lad.png'
 
 class Ladder {
  constructor() {
   // let random = 300 * Math.random() - 150
   let randomTop = (Math.random() * canvas.height/3);
-  if(randomTop < 200){
-   randomTop += 230
+  if(randomTop < 300){
+   randomTop += 430
   }
   let randomBottom = (Math.random() * canvas.height/3);
-  if(randomBottom < 200 && randomTop < 400){
-   randomBottom += 200
+  if(randomBottom < 300 && randomTop < 500){
+   randomBottom += 350
   }
   this.top =  randomTop
   this.bottom = randomBottom
@@ -24,8 +26,10 @@ class Ladder {
  }
  draw(){
   ctx.fillStyle = this.color;
-  ctx.fillRect(this.x, 0 , this.width, this.top);
-  ctx.fillRect(this.x, canvas.height - this.bottom, this.width, this.bottom);
+  // ctx.fillRect(this.x, 0 , this.width, this.top);
+  ctx.drawImage(lad,0,0,500,600,this.x - 5, -30 , this.width + 10, this.top + 70)
+  // ctx.fillRect(this.x, canvas.height - this.bottom, this.width, this.bottom);
+  ctx.drawImage(lad,0,0,500,600,this.x -5, canvas.height - this.bottom - 20, this.width + 10, this.bottom + 60)
  }
  update(){
   this.x -= gameSpeed;
