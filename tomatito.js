@@ -9,8 +9,8 @@ class Tomatito {
   this.vy = 0;
   this.ogWidth = 573;
   this.ogHeight = 523;
-  this.width = this.ogWidth/22
-  this.height = this.ogHeight/22
+  this.width = this.ogWidth/25
+  this.height = this.ogHeight/25
   this.weight = 1;
   this.frameY = 5;
 
