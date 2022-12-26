@@ -13,7 +13,7 @@ let gameSpeed = 2;
 let audio_hit = new Audio()
 audio_hit.src = 'qubodup-crash.ogg'
 let backGround = new Image();
-backGround.src = 'BG.png';
+backGround.src = 'scary.png';
 const BG = {
   x1: 0,
   x2: canvas.width,
@@ -39,11 +39,11 @@ const handleCollisions = () => {
    (tomatito.y > canvas.height - laddersArray[i].bottom &&
     tomatito.y + tomatito.height < canvas.height))){
     audio_hit.play();
-     ctx.font = "90px Anton";
-      ctx.fillStyle = "purple";
+     ctx.font = "50px Anton";
+      ctx.fillStyle = "black";
       ctx.fillText(
-        "Tomatito got scared!",
-        80,
+        "Tomatito got scared! your score is " + score,
+        200,
         canvas.height / 2 - 10
       );
      return true;
@@ -56,7 +56,9 @@ window.addEventListener('keydown', (e) => {
   if(e.code === 'Space')   spacePressed = true; start = true;
   setTimeout(() => {
    spacePressed = false;
- }, "100")
+   tomatito.frameY = 5
+ }, "150")
+
  })
  
  window.addEventListener('mousedown', (e) => {
@@ -64,7 +66,8 @@ window.addEventListener('keydown', (e) => {
    spacePressed = true;
    setTimeout(() => {
     spacePressed = false;
-  }, "100")
+    tomatito.frameY = 5
+  }, "150")
  
  })
 
@@ -75,7 +78,7 @@ const animate = () =>{
  handleLadders();
  tomatito.update();
  tomatito.draw();
- ctx.fillStyle = 'fucsia';
+ ctx.fillStyle = 'white';
  ctx.font = "90px Anton";
  ctx.strokeText(score, 500, 100);
  ctx.fillText(score, 500, 100);

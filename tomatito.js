@@ -1,5 +1,5 @@
 const tomatitoSprite = new Image();
-tomatitoSprite.src = 'toma.png'
+tomatitoSprite.src = 'dog.png'
 
 
 class Tomatito {
@@ -7,11 +7,13 @@ class Tomatito {
   this.x = 150;
   this.y = 200;
   this.vy = 0;
-  this.ogWidth = 941;
-  this.ogHeight = 680
-  this.width = this.ogWidth/10
-  this.height = this.ogHeight/10
+  this.ogWidth = 573;
+  this.ogHeight = 523;
+  this.width = this.ogWidth/20
+  this.height = this.ogHeight/20
   this.weight = 1;
+  this.frameY = 5;
+
  }
  update(){
   let curve = Math.sin(angle) * 15;
@@ -32,10 +34,12 @@ class Tomatito {
  }
  draw(){
   ctx.fillStyle = 'red';
-  ctx.drawImage(tomatitoSprite, 0, 0, this.ogWidth, this.ogHeight, this.x - 6, this.y - 85, this.width * 3, this.height *3)
+  ctx.drawImage(tomatitoSprite,  0, this.frameY * this.ogHeight, this.ogWidth, this.ogHeight, this.x - 6, this.y - 85, this.width * 4, this.height *4)
  }
  run(){
-  this.vy -= 2;
+  this.vy -= 2.4;
+  if(this.frameY >= 7) this.frameY = 6;
+  else if (frame % 11 === 0) this.frameY++;
  }
 }
 
