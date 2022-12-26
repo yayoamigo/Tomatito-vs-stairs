@@ -9,8 +9,8 @@ class Tomatito {
   this.vy = 0;
   this.ogWidth = 573;
   this.ogHeight = 523;
-  this.width = this.ogWidth/20
-  this.height = this.ogHeight/20
+  this.width = this.ogWidth/22
+  this.height = this.ogHeight/22
   this.weight = 1;
   this.frameY = 5;
 
@@ -34,7 +34,7 @@ class Tomatito {
  }
  draw(){
   ctx.fillStyle = 'red';
-  ctx.drawImage(tomatitoSprite,  0, this.frameY * this.ogHeight, this.ogWidth, this.ogHeight, this.x - 6, this.y - 85, this.width * 4, this.height *4)
+  ctx.drawImage(tomatitoSprite,  0, this.frameY * this.ogHeight, this.ogWidth, this.ogHeight, this.x - 30, this.y - 85, this.width * 4, this.height *4)
  }
  run(){
   this.vy -= 2.4;
